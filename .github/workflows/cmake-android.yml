@@ -76,6 +76,6 @@ jobs:
       with:
         name: zlib-android-latest-all-artifacts 
         path: |
-          zlib/build/arm64-v8a/Release/*.so
-          zlib/build/x86_64/Release/*.so
+          zlib/build/arm64-v8a/*.so
+          zlib/build/x86_64/*.so
         if-no-files-found: ignore # 'warn' or 'ignore' or 'error'

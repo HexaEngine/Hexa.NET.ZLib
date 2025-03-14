@@ -78,14 +78,14 @@ jobs:
       - name: Move Windows binaries
         if: matrix.os == 'windows-latest'
         run: |
-          mv zlib/build/bin/Release/*.dll zlib/build/bin/
+          mv zlib/build/bin/Release/*.dll zlib/build/
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4.3.4
         with:
           name: zlib-${{ matrix.os }}-${{ matrix.arch }}-artifacts
           path: |
-            zlib/build/Release/*.dll
-            zlib/build/Release/*.so
-            zlib/build/Release/*.dylib
+            zlib/build/*.dll
+            zlib/build/*.so
+            zlib/build/*.dylib
           if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
