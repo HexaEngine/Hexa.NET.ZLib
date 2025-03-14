@@ -1,0 +1,91 @@
+name: Build zlib Libraries
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            arch: x86_64
+            cmake-arch: x64
+          - os: linux
+            arch: arm64
+            cmake-arch: aarch64
+            runner-label: self-hosted
+          - os: windows-latest
+            arch: x86_64
+            triplet: x64-windows
+            cmake-arch: x64
+          - os: windows-latest
+            arch: x86
+            triplet: x86-windows
+            cmake-arch: win32
+          - os: windows-latest
+            arch: arm64
+            triplet: arm64-windows
+            cmake-arch: arm64
+          - os: macos-latest
+            arch: x86_64
+            cmake-arch: x86_64
+          - os: macos-latest
+            arch: arm64
+            cmake-arch: arm64
+
+    steps:
+      - uses: actions/checkout@v4.1.7
+        with:
+          repository: "madler/zlib"
+          path: "zlib"
+          ref: "v1.3.1"
+          submodules: true
+
+      - name: Install Dependencies on Ubuntu
+        if: matrix.os == 'linux' || matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake
+
+      - name: Configure zlib with CMake on Linux
+        if: matrix.os == 'linux' || matrix.os == 'ubuntu-latest'
+        run: |
+          cd zlib
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF
+
+      - name: Configure zlib with CMake on Windows
+        if: matrix.os == 'windows-latest' && matrix.arch != 'arm64'
+        run: |
+          cd zlib
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -A ${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF
+
+      - name: Configure zlib with CMake on Windows (ARM64)
+        if: matrix.os == 'windows-latest' && matrix.arch == 'arm64'
+        run: |
+          cd zlib
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -A ${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+
+      - name: Configure zlib with CMake on macOS
+        if: matrix.os == 'macos-latest'
+        run: |
+          cd zlib
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF
+
+      - name: Build zlib
+        run: cmake --build zlib/build --config Release
+
+      - name: Move Windows binaries
+        if: matrix.os == 'windows-latest'
+        run: |
+          mv zlib/build/bin/Release/*.dll zlib/build/bin/
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: zlib-${{ matrix.os }}-${{ matrix.arch }}-artifacts
+          path: |
+            zlib/build/bin/*.dll
+            zlib/build/bin/*.so
+            zlib/build/bin/*.dylib
+          if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
