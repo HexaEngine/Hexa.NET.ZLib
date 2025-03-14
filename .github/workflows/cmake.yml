@@ -85,7 +85,7 @@ jobs:
         with:
           name: zlib-${{ matrix.os }}-${{ matrix.arch }}-artifacts
           path: |
-            zlib/build/bin/*.dll
-            zlib/build/bin/*.so
-            zlib/build/bin/*.dylib
+            zlib/build/Release/*.dll
+            zlib/build/Release/*.so
+            zlib/build/Release/*.dylib
           if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
