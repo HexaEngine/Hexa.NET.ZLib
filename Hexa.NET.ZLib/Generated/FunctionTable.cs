@@ -22,9 +22,9 @@ namespace Hexa.NET.ZLib
 		/// <summary>
 		/// Initializes the function table, automatically called. Do not call manually, only after <see cref="FreeApi"/>.
 		/// </summary>
-		public static void InitApi()
+		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 80);
+			funcTable = new FunctionTable(context, 96);
 			funcTable.Load(0, "zlibVersion");
 			funcTable.Load(1, "deflate");
 			funcTable.Load(2, "deflateEnd");
@@ -105,6 +105,22 @@ namespace Hexa.NET.ZLib
 			funcTable.Load(77, "inflateResetKeep");
 			funcTable.Load(78, "deflateResetKeep");
 			funcTable.Load(79, "gzopen_w");
+			funcTable.Load(80, "zcalloc");
+			funcTable.Load(81, "zcfree");
+			funcTable.Load(82, "inflate_table");
+			funcTable.Load(83, "_tr_init");
+			funcTable.Load(84, "_tr_tally");
+			funcTable.Load(85, "_tr_flush_block");
+			funcTable.Load(86, "_tr_flush_bits");
+			funcTable.Load(87, "_tr_align");
+			funcTable.Load(88, "_tr_stored_block");
+			funcTable.Load(89, "inflate_fast");
+			funcTable.Load(90, "gzopen64");
+			funcTable.Load(91, "gzseek64");
+			funcTable.Load(92, "gztell64");
+			funcTable.Load(93, "gzoffset64");
+			funcTable.Load(94, "gz_error");
+			funcTable.Load(95, "gz_intmax");
 		}
 
 		public static void FreeApi()

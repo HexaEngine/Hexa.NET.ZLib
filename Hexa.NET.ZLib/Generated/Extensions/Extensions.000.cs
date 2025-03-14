@@ -665,5 +665,115 @@ namespace Hexa.NET.ZLib
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static long Seek64(this GzFile unknown0, long unknown1, int unknown2)
+		{
+			long ret = ZLib.Seek64Native(unknown0, unknown1, unknown2);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static long Tell64(this GzFile unknown0)
+		{
+			long ret = ZLib.Tell64Native(unknown0);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static long Offset64(this GzFile unknown0)
+		{
+			long ret = ZLib.Offset64Native(unknown0);
+			return ret;
+		}
+
+		/// <summary>
+		/// Same as gzclose(), but gzclose_r() is only for use when reading, and<br/>
+		/// gzclose_w() is only for use when writing or appending.  The advantage to<br/>
+		/// using these instead of gzclose() is that they avoid linking in zlib<br/>
+		/// compression or decompression code that is not used when only reading or only<br/>
+		/// writing respectively.  If gzclose() is used, then both compression and<br/>
+		/// decompression code will be included the application when linking to a static<br/>
+		/// zlib library.<br/>
+		/// </summary>
+		public static void Error(this GzStatep unknown0, int unknown1, byte* unknown2)
+		{
+			ZLib.ErrorNative(unknown0, unknown1, unknown2);
+		}
+
+		/// <summary>
+		/// Same as gzclose(), but gzclose_r() is only for use when reading, and<br/>
+		/// gzclose_w() is only for use when writing or appending.  The advantage to<br/>
+		/// using these instead of gzclose() is that they avoid linking in zlib<br/>
+		/// compression or decompression code that is not used when only reading or only<br/>
+		/// writing respectively.  If gzclose() is used, then both compression and<br/>
+		/// decompression code will be included the application when linking to a static<br/>
+		/// zlib library.<br/>
+		/// </summary>
+		public static void Error(this GzStatep unknown0, int unknown1, ref byte unknown2)
+		{
+			fixed (byte* punknown2 = &unknown2)
+			{
+				ZLib.ErrorNative(unknown0, unknown1, (byte*)punknown2);
+			}
+		}
+
+		/// <summary>
+		/// Same as gzclose(), but gzclose_r() is only for use when reading, and<br/>
+		/// gzclose_w() is only for use when writing or appending.  The advantage to<br/>
+		/// using these instead of gzclose() is that they avoid linking in zlib<br/>
+		/// compression or decompression code that is not used when only reading or only<br/>
+		/// writing respectively.  If gzclose() is used, then both compression and<br/>
+		/// decompression code will be included the application when linking to a static<br/>
+		/// zlib library.<br/>
+		/// </summary>
+		public static void Error(this GzStatep unknown0, int unknown1, ReadOnlySpan<byte> unknown2)
+		{
+			fixed (byte* punknown2 = unknown2)
+			{
+				ZLib.ErrorNative(unknown0, unknown1, (byte*)punknown2);
+			}
+		}
+
+		/// <summary>
+		/// Same as gzclose(), but gzclose_r() is only for use when reading, and<br/>
+		/// gzclose_w() is only for use when writing or appending.  The advantage to<br/>
+		/// using these instead of gzclose() is that they avoid linking in zlib<br/>
+		/// compression or decompression code that is not used when only reading or only<br/>
+		/// writing respectively.  If gzclose() is used, then both compression and<br/>
+		/// decompression code will be included the application when linking to a static<br/>
+		/// zlib library.<br/>
+		/// </summary>
+		public static void Error(this GzStatep unknown0, int unknown1, string unknown2)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (unknown2 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(unknown2);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(unknown2, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ZLib.ErrorNative(unknown0, unknown1, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
 	}
 }

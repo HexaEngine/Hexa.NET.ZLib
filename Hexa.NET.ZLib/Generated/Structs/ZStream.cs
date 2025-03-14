@@ -60,7 +60,7 @@ namespace Hexa.NET.ZLib
 		/// <summary>
 		/// not visible by applications <br/>
 		/// </summary>
-		public unsafe InternalState* State;
+		public unsafe DeflateState* State;
 
 		/// <summary>
 		/// used to allocate the internal state <br/>
@@ -95,7 +95,7 @@ namespace Hexa.NET.ZLib
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ZStream(byte* nextIn = default, uint availIn = default, uint totalIn = default, byte* nextOut = default, uint availOut = default, uint totalOut = default, byte* msg = default, InternalState* state = default, AllocFunc zalloc = default, FreeFunc zfree = default, void* opaque = default, int dataType = default, uint adler = default, uint reserved = default)
+		public unsafe ZStream(byte* nextIn = default, uint availIn = default, uint totalIn = default, byte* nextOut = default, uint availOut = default, uint totalOut = default, byte* msg = default, DeflateState* state = default, AllocFunc zalloc = default, FreeFunc zfree = default, void* opaque = default, int dataType = default, uint adler = default, uint reserved = default)
 		{
 			NextIn = nextIn;
 			AvailIn = availIn;

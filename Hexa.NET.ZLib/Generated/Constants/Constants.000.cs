@@ -15,6 +15,8 @@ namespace Hexa.NET.ZLib
 {
 	public unsafe partial class ZLib
 	{
+		public const int DIST_CODE_LEN = 512;
+
 		public const int MAX_MEM_LEVEL = 9;
 
 		public const int MAX_WBITS = 15;
@@ -98,6 +100,74 @@ namespace Hexa.NET.ZLib
 		public const int Z_DEFLATED = 8;
 
 		public const int Z_NULL = 0;
+
+		public const int DEF_WBITS = MAX_WBITS;
+
+		public const int DEF_MEM_LEVEL = 8;
+
+		public const int STORED_BLOCK = 0;
+
+		public const int STATIC_TREES = 1;
+
+		public const int DYN_TREES = 2;
+
+		public const int MIN_MATCH = 3;
+
+		public const int MAX_MATCH = 258;
+
+		public const int PRESET_DICT = 0x20;
+
+		public const int OS_CODE = 10;
+
+		public const int ENOUGH_LENS = 852;
+
+		public const int ENOUGH_DISTS = 592;
+
+		public const int LENGTH_CODES = 29;
+
+		public const int LITERALS = 256;
+
+		public const int D_CODES = 30;
+
+		public const int BL_CODES = 19;
+
+		public const int MAX_BITS = 15;
+
+		public const int Buf_size = 16;
+
+		public const int INIT_STATE = 42;
+
+		public const int GZIP_STATE = 57;
+
+		public const int EXTRA_STATE = 69;
+
+		public const int NAME_STATE = 73;
+
+		public const int COMMENT_STATE = 91;
+
+		public const int HCRC_STATE = 103;
+
+		public const int BUSY_STATE = 113;
+
+		public const int FINISH_STATE = 666;
+
+		public const int LIT_BUFS = 4;
+
+		public const int WIN_INIT = MAX_MATCH;
+
+		public const int GZBUFSIZE = 8192;
+
+		public const int GZ_NONE = 0;
+
+		public const int GZ_READ = 7247;
+
+		public const int GZ_WRITE = 31153;
+
+		public const int GZ_APPEND = 1;
+
+		public const int LOOK = 0;
+
+		public const int COPY = 1;
 
 	}
 }

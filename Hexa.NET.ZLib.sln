@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexa.NET.ZLib", "Hexa.NET.Z
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generator", "Generator\Generator.csproj", "{5F162047-71C4-A730-10F2-8456E4D1F966}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{448E46F7-1833-4C4A-9219-4A1A44D06289}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5F162047-71C4-A730-10F2-8456E4D1F966}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F162047-71C4-A730-10F2-8456E4D1F966}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F162047-71C4-A730-10F2-8456E4D1F966}.Release|Any CPU.Build.0 = Release|Any CPU
+		{448E46F7-1833-4C4A-9219-4A1A44D06289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{448E46F7-1833-4C4A-9219-4A1A44D06289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{448E46F7-1833-4C4A-9219-4A1A44D06289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{448E46F7-1833-4C4A-9219-4A1A44D06289}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

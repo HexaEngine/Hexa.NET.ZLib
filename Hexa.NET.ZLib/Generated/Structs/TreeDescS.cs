@@ -20,8 +20,33 @@ namespace Hexa.NET.ZLib
 	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct InternalState
+	public partial struct TreeDescS
 	{
+		/// <summary>
+		/// the dynamic tree <br/>
+		/// </summary>
+		public unsafe CtDataS* DynTree;
+
+		/// <summary>
+		/// largest code with non zero frequency <br/>
+		/// </summary>
+		public int MaxCode;
+
+		/// <summary>
+		/// the corresponding static tree <br/>
+		/// </summary>
+		public unsafe StaticTreeDescS* StatDesc;
+
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe TreeDescS(CtDataS* dynTree = default, int maxCode = default, StaticTreeDescS* statDesc = default)
+		{
+			DynTree = dynTree;
+			MaxCode = maxCode;
+			StatDesc = statDesc;
+		}
 
 
 	}

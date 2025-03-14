@@ -10,9 +10,9 @@
   "GenerateDelegates": true,
   "GenerateMetadata": false,
   "GenerateExtensions": true,
+  "UseCustomContext": true,
   "DelegatesAsVoidPointer": true,
   "BoolType": 0,
-  "IgnoredConstants": [ "PNG_HEADER_VERSION_STRING" ],
   "IgnoredFunctions": [ "gzvprintf" ],
   "IgnoredTypedefs": [
     "gz_headerp",
@@ -44,6 +44,7 @@
     "z_size_t": "nint",
     "uLongf": "uint",
 
-    "Bytef": "byte"
+    "Bytef": "byte",
+    "internal_state": "DeflateState"
   }
 }

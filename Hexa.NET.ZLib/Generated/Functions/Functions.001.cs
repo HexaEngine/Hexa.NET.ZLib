@@ -948,5 +948,1101 @@ namespace Hexa.NET.ZLib
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void* ZcallocNative(void* opaque, uint items, uint size)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<void*, uint, uint, void*>)funcTable[80])(opaque, items, size);
+			#else
+			return (void*)((delegate* unmanaged[Cdecl]<nint, uint, uint, nint>)funcTable[80])((nint)opaque, items, size);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void* Zcalloc(void* opaque, uint items, uint size)
+		{
+			void* ret = ZcallocNative(opaque, items, size);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ZcfreeNative(void* opaque, void* ptr)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void*, void*, void>)funcTable[81])(opaque, ptr);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[81])((nint)opaque, (nint)ptr);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Zcfree(void* opaque, void* ptr)
+		{
+			ZcfreeNative(opaque, ptr);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int InflateTableNative(Codetype type, ushort* lens, uint codes, Code** table, uint* bits, ushort* work)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<Codetype, ushort*, uint, Code**, uint*, ushort*, int>)funcTable[82])(type, lens, codes, table, bits, work);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<Codetype, nint, uint, nint, nint, nint, int>)funcTable[82])(type, (nint)lens, codes, (nint)table, (nint)bits, (nint)work);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ushort* lens, uint codes, Code** table, uint* bits, ushort* work)
+		{
+			int ret = InflateTableNative(type, lens, codes, table, bits, work);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ref ushort lens, uint codes, Code** table, uint* bits, ushort* work)
+		{
+			fixed (ushort* plens = &lens)
+			{
+				int ret = InflateTableNative(type, (ushort*)plens, codes, table, bits, work);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ushort* lens, uint codes, ref Code* table, uint* bits, ushort* work)
+		{
+			fixed (Code** ptable = &table)
+			{
+				int ret = InflateTableNative(type, lens, codes, (Code**)ptable, bits, work);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ref ushort lens, uint codes, ref Code* table, uint* bits, ushort* work)
+		{
+			fixed (ushort* plens = &lens)
+			{
+				fixed (Code** ptable = &table)
+				{
+					int ret = InflateTableNative(type, (ushort*)plens, codes, (Code**)ptable, bits, work);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ushort* lens, uint codes, Code** table, ref uint bits, ushort* work)
+		{
+			fixed (uint* pbits = &bits)
+			{
+				int ret = InflateTableNative(type, lens, codes, table, (uint*)pbits, work);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ref ushort lens, uint codes, Code** table, ref uint bits, ushort* work)
+		{
+			fixed (ushort* plens = &lens)
+			{
+				fixed (uint* pbits = &bits)
+				{
+					int ret = InflateTableNative(type, (ushort*)plens, codes, table, (uint*)pbits, work);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ushort* lens, uint codes, ref Code* table, ref uint bits, ushort* work)
+		{
+			fixed (Code** ptable = &table)
+			{
+				fixed (uint* pbits = &bits)
+				{
+					int ret = InflateTableNative(type, lens, codes, (Code**)ptable, (uint*)pbits, work);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ref ushort lens, uint codes, ref Code* table, ref uint bits, ushort* work)
+		{
+			fixed (ushort* plens = &lens)
+			{
+				fixed (Code** ptable = &table)
+				{
+					fixed (uint* pbits = &bits)
+					{
+						int ret = InflateTableNative(type, (ushort*)plens, codes, (Code**)ptable, (uint*)pbits, work);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ushort* lens, uint codes, Code** table, uint* bits, ref ushort work)
+		{
+			fixed (ushort* pwork = &work)
+			{
+				int ret = InflateTableNative(type, lens, codes, table, bits, (ushort*)pwork);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ref ushort lens, uint codes, Code** table, uint* bits, ref ushort work)
+		{
+			fixed (ushort* plens = &lens)
+			{
+				fixed (ushort* pwork = &work)
+				{
+					int ret = InflateTableNative(type, (ushort*)plens, codes, table, bits, (ushort*)pwork);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ushort* lens, uint codes, ref Code* table, uint* bits, ref ushort work)
+		{
+			fixed (Code** ptable = &table)
+			{
+				fixed (ushort* pwork = &work)
+				{
+					int ret = InflateTableNative(type, lens, codes, (Code**)ptable, bits, (ushort*)pwork);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ref ushort lens, uint codes, ref Code* table, uint* bits, ref ushort work)
+		{
+			fixed (ushort* plens = &lens)
+			{
+				fixed (Code** ptable = &table)
+				{
+					fixed (ushort* pwork = &work)
+					{
+						int ret = InflateTableNative(type, (ushort*)plens, codes, (Code**)ptable, bits, (ushort*)pwork);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ushort* lens, uint codes, Code** table, ref uint bits, ref ushort work)
+		{
+			fixed (uint* pbits = &bits)
+			{
+				fixed (ushort* pwork = &work)
+				{
+					int ret = InflateTableNative(type, lens, codes, table, (uint*)pbits, (ushort*)pwork);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ref ushort lens, uint codes, Code** table, ref uint bits, ref ushort work)
+		{
+			fixed (ushort* plens = &lens)
+			{
+				fixed (uint* pbits = &bits)
+				{
+					fixed (ushort* pwork = &work)
+					{
+						int ret = InflateTableNative(type, (ushort*)plens, codes, table, (uint*)pbits, (ushort*)pwork);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ushort* lens, uint codes, ref Code* table, ref uint bits, ref ushort work)
+		{
+			fixed (Code** ptable = &table)
+			{
+				fixed (uint* pbits = &bits)
+				{
+					fixed (ushort* pwork = &work)
+					{
+						int ret = InflateTableNative(type, lens, codes, (Code**)ptable, (uint*)pbits, (ushort*)pwork);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int InflateTable(Codetype type, ref ushort lens, uint codes, ref Code* table, ref uint bits, ref ushort work)
+		{
+			fixed (ushort* plens = &lens)
+			{
+				fixed (Code** ptable = &table)
+				{
+					fixed (uint* pbits = &bits)
+					{
+						fixed (ushort* pwork = &work)
+						{
+							int ret = InflateTableNative(type, (ushort*)plens, codes, (Code**)ptable, (uint*)pbits, (ushort*)pwork);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// in trees.c <br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TrInitNative(DeflateState* s)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<DeflateState*, void>)funcTable[83])(s);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[83])((nint)s);
+			#endif
+		}
+
+		/// <summary>
+		/// in trees.c <br/>
+		/// </summary>
+		public static void TrInit(DeflateState* s)
+		{
+			TrInitNative(s);
+		}
+
+		/// <summary>
+		/// in trees.c <br/>
+		/// </summary>
+		public static void TrInit(ref DeflateState s)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				TrInitNative((DeflateState*)ps);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int TrTallyNative(DeflateState* s, uint dist, uint lc)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<DeflateState*, uint, uint, int>)funcTable[84])(s, dist, lc);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, uint, uint, int>)funcTable[84])((nint)s, dist, lc);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int TrTally(DeflateState* s, uint dist, uint lc)
+		{
+			int ret = TrTallyNative(s, dist, lc);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int TrTally(ref DeflateState s, uint dist, uint lc)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				int ret = TrTallyNative((DeflateState*)ps, dist, lc);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TrFlushBlockNative(DeflateState* s, byte* buf, uint storedLen, int last)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<DeflateState*, byte*, uint, int, void>)funcTable[85])(s, buf, storedLen, last);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, uint, int, void>)funcTable[85])((nint)s, (nint)buf, storedLen, last);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrFlushBlock(DeflateState* s, byte* buf, uint storedLen, int last)
+		{
+			TrFlushBlockNative(s, buf, storedLen, last);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrFlushBlock(ref DeflateState s, byte* buf, uint storedLen, int last)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				TrFlushBlockNative((DeflateState*)ps, buf, storedLen, last);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrFlushBlock(DeflateState* s, ref byte buf, uint storedLen, int last)
+		{
+			fixed (byte* pbuf = &buf)
+			{
+				TrFlushBlockNative(s, (byte*)pbuf, storedLen, last);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrFlushBlock(DeflateState* s, ref string buf, uint storedLen, int last)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buf != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(buf);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TrFlushBlockNative(s, pStr0, storedLen, last);
+			buf = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrFlushBlock(ref DeflateState s, ref byte buf, uint storedLen, int last)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					TrFlushBlockNative((DeflateState*)ps, (byte*)pbuf, storedLen, last);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrFlushBlock(ref DeflateState s, ref string buf, uint storedLen, int last)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (buf != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(buf);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				TrFlushBlockNative((DeflateState*)ps, pStr0, storedLen, last);
+				buf = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TrFlushBitsNative(DeflateState* s)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<DeflateState*, void>)funcTable[86])(s);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[86])((nint)s);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrFlushBits(DeflateState* s)
+		{
+			TrFlushBitsNative(s);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrFlushBits(ref DeflateState s)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				TrFlushBitsNative((DeflateState*)ps);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TrAlignNative(DeflateState* s)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<DeflateState*, void>)funcTable[87])(s);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[87])((nint)s);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrAlign(DeflateState* s)
+		{
+			TrAlignNative(s);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrAlign(ref DeflateState s)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				TrAlignNative((DeflateState*)ps);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TrStoredBlockNative(DeflateState* s, byte* buf, uint storedLen, int last)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<DeflateState*, byte*, uint, int, void>)funcTable[88])(s, buf, storedLen, last);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, uint, int, void>)funcTable[88])((nint)s, (nint)buf, storedLen, last);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrStoredBlock(DeflateState* s, byte* buf, uint storedLen, int last)
+		{
+			TrStoredBlockNative(s, buf, storedLen, last);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrStoredBlock(ref DeflateState s, byte* buf, uint storedLen, int last)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				TrStoredBlockNative((DeflateState*)ps, buf, storedLen, last);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrStoredBlock(DeflateState* s, ref byte buf, uint storedLen, int last)
+		{
+			fixed (byte* pbuf = &buf)
+			{
+				TrStoredBlockNative(s, (byte*)pbuf, storedLen, last);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrStoredBlock(DeflateState* s, ref string buf, uint storedLen, int last)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buf != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(buf);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TrStoredBlockNative(s, pStr0, storedLen, last);
+			buf = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrStoredBlock(ref DeflateState s, ref byte buf, uint storedLen, int last)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					TrStoredBlockNative((DeflateState*)ps, (byte*)pbuf, storedLen, last);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TrStoredBlock(ref DeflateState s, ref string buf, uint storedLen, int last)
+		{
+			fixed (DeflateState* ps = &s)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (buf != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(buf);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				TrStoredBlockNative((DeflateState*)ps, pStr0, storedLen, last);
+				buf = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// WARNING: this file should *not* be used by applications. It is<br/>
+		/// part of the implementation of the compression library and is<br/>
+		/// subject to change. Applications should only use zlib.h.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void InflateFastNative(ZStream* strm, uint start)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ZStream*, uint, void>)funcTable[89])(strm, start);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[89])((nint)strm, start);
+			#endif
+		}
+
+		/// <summary>
+		/// WARNING: this file should *not* be used by applications. It is<br/>
+		/// part of the implementation of the compression library and is<br/>
+		/// subject to change. Applications should only use zlib.h.<br/>
+		/// </summary>
+		public static void InflateFast(ZStream* strm, uint start)
+		{
+			InflateFastNative(strm, start);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static GzFile Open64Native(byte* unknown0, byte* unknown1)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, GzFile>)funcTable[90])(unknown0, unknown1);
+			#else
+			return (GzFile)((delegate* unmanaged[Cdecl]<nint, nint, GzFile>)funcTable[90])((nint)unknown0, (nint)unknown1);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(byte* unknown0, byte* unknown1)
+		{
+			GzFile ret = Open64Native(unknown0, unknown1);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(ref byte unknown0, byte* unknown1)
+		{
+			fixed (byte* punknown0 = &unknown0)
+			{
+				GzFile ret = Open64Native((byte*)punknown0, unknown1);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(ReadOnlySpan<byte> unknown0, byte* unknown1)
+		{
+			fixed (byte* punknown0 = unknown0)
+			{
+				GzFile ret = Open64Native((byte*)punknown0, unknown1);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(string unknown0, byte* unknown1)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (unknown0 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(unknown0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(unknown0, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			GzFile ret = Open64Native(pStr0, unknown1);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(byte* unknown0, ref byte unknown1)
+		{
+			fixed (byte* punknown1 = &unknown1)
+			{
+				GzFile ret = Open64Native(unknown0, (byte*)punknown1);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(byte* unknown0, ReadOnlySpan<byte> unknown1)
+		{
+			fixed (byte* punknown1 = unknown1)
+			{
+				GzFile ret = Open64Native(unknown0, (byte*)punknown1);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(byte* unknown0, string unknown1)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (unknown1 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(unknown1);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(unknown1, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			GzFile ret = Open64Native(unknown0, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(ref byte unknown0, ref byte unknown1)
+		{
+			fixed (byte* punknown0 = &unknown0)
+			{
+				fixed (byte* punknown1 = &unknown1)
+				{
+					GzFile ret = Open64Native((byte*)punknown0, (byte*)punknown1);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(ReadOnlySpan<byte> unknown0, ReadOnlySpan<byte> unknown1)
+		{
+			fixed (byte* punknown0 = unknown0)
+			{
+				fixed (byte* punknown1 = unknown1)
+				{
+					GzFile ret = Open64Native((byte*)punknown0, (byte*)punknown1);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static GzFile Open64(string unknown0, string unknown1)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (unknown0 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(unknown0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(unknown0, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (unknown1 != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(unknown1);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(unknown1, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			GzFile ret = Open64Native(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static long Seek64Native(GzFile unknown0, long unknown1, int unknown2)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<GzFile, long, int, long>)funcTable[91])(unknown0, unknown1, unknown2);
+			#else
+			return (long)((delegate* unmanaged[Cdecl]<GzFile, long, int, long>)funcTable[91])(unknown0, unknown1, unknown2);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static long Seek64(GzFile unknown0, long unknown1, int unknown2)
+		{
+			long ret = Seek64Native(unknown0, unknown1, unknown2);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static long Tell64Native(GzFile unknown0)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<GzFile, long>)funcTable[92])(unknown0);
+			#else
+			return (long)((delegate* unmanaged[Cdecl]<GzFile, long>)funcTable[92])(unknown0);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static long Tell64(GzFile unknown0)
+		{
+			long ret = Tell64Native(unknown0);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static long Offset64Native(GzFile unknown0)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<GzFile, long>)funcTable[93])(unknown0);
+			#else
+			return (long)((delegate* unmanaged[Cdecl]<GzFile, long>)funcTable[93])(unknown0);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static long Offset64(GzFile unknown0)
+		{
+			long ret = Offset64Native(unknown0);
+			return ret;
+		}
+
+		/// <summary>
+		/// Same as gzclose(), but gzclose_r() is only for use when reading, and<br/>
+		/// gzclose_w() is only for use when writing or appending.  The advantage to<br/>
+		/// using these instead of gzclose() is that they avoid linking in zlib<br/>
+		/// compression or decompression code that is not used when only reading or only<br/>
+		/// writing respectively.  If gzclose() is used, then both compression and<br/>
+		/// decompression code will be included the application when linking to a static<br/>
+		/// zlib library.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ErrorNative(GzStatep unknown0, int unknown1, byte* unknown2)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<GzStatep, int, byte*, void>)funcTable[94])(unknown0, unknown1, unknown2);
+			#else
+			((delegate* unmanaged[Cdecl]<GzStatep, int, nint, void>)funcTable[94])(unknown0, unknown1, (nint)unknown2);
+			#endif
+		}
+
+		/// <summary>
+		/// Same as gzclose(), but gzclose_r() is only for use when reading, and<br/>
+		/// gzclose_w() is only for use when writing or appending.  The advantage to<br/>
+		/// using these instead of gzclose() is that they avoid linking in zlib<br/>
+		/// compression or decompression code that is not used when only reading or only<br/>
+		/// writing respectively.  If gzclose() is used, then both compression and<br/>
+		/// decompression code will be included the application when linking to a static<br/>
+		/// zlib library.<br/>
+		/// </summary>
+		public static void Error(GzStatep unknown0, int unknown1, byte* unknown2)
+		{
+			ErrorNative(unknown0, unknown1, unknown2);
+		}
+
+		/// <summary>
+		/// Same as gzclose(), but gzclose_r() is only for use when reading, and<br/>
+		/// gzclose_w() is only for use when writing or appending.  The advantage to<br/>
+		/// using these instead of gzclose() is that they avoid linking in zlib<br/>
+		/// compression or decompression code that is not used when only reading or only<br/>
+		/// writing respectively.  If gzclose() is used, then both compression and<br/>
+		/// decompression code will be included the application when linking to a static<br/>
+		/// zlib library.<br/>
+		/// </summary>
+		public static void Error(GzStatep unknown0, int unknown1, ref byte unknown2)
+		{
+			fixed (byte* punknown2 = &unknown2)
+			{
+				ErrorNative(unknown0, unknown1, (byte*)punknown2);
+			}
+		}
+
+		/// <summary>
+		/// Same as gzclose(), but gzclose_r() is only for use when reading, and<br/>
+		/// gzclose_w() is only for use when writing or appending.  The advantage to<br/>
+		/// using these instead of gzclose() is that they avoid linking in zlib<br/>
+		/// compression or decompression code that is not used when only reading or only<br/>
+		/// writing respectively.  If gzclose() is used, then both compression and<br/>
+		/// decompression code will be included the application when linking to a static<br/>
+		/// zlib library.<br/>
+		/// </summary>
+		public static void Error(GzStatep unknown0, int unknown1, ReadOnlySpan<byte> unknown2)
+		{
+			fixed (byte* punknown2 = unknown2)
+			{
+				ErrorNative(unknown0, unknown1, (byte*)punknown2);
+			}
+		}
+
+		/// <summary>
+		/// Same as gzclose(), but gzclose_r() is only for use when reading, and<br/>
+		/// gzclose_w() is only for use when writing or appending.  The advantage to<br/>
+		/// using these instead of gzclose() is that they avoid linking in zlib<br/>
+		/// compression or decompression code that is not used when only reading or only<br/>
+		/// writing respectively.  If gzclose() is used, then both compression and<br/>
+		/// decompression code will be included the application when linking to a static<br/>
+		/// zlib library.<br/>
+		/// </summary>
+		public static void Error(GzStatep unknown0, int unknown1, string unknown2)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (unknown2 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(unknown2);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(unknown2, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ErrorNative(unknown0, unknown1, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// GT_OFF(x), where x is an unsigned value, is true if x > maximum z_off64_t<br/>
+		/// value -- needed when comparing unsigned to z_off64_t, which is signed<br/>
+		/// (possible z_off64_t types off_t, off64_t, and long are all signed) <br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint IntmaxNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[95])();
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[95])();
+			#endif
+		}
+
+		/// <summary>
+		/// GT_OFF(x), where x is an unsigned value, is true if x > maximum z_off64_t<br/>
+		/// value -- needed when comparing unsigned to z_off64_t, which is signed<br/>
+		/// (possible z_off64_t types off_t, off64_t, and long are all signed) <br/>
+		/// </summary>
+		public static uint Intmax()
+		{
+			uint ret = IntmaxNative();
+			return ret;
+		}
+
 	}
 }
