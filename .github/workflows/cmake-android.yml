@@ -56,7 +56,7 @@ jobs:
                   -DCMAKE_ANDROID_ARCH_ABI=arm64-v8a \
                   -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
                   -S zlib \
-                  -B zlib/build/arm64-v8a -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF
+                  -B zlib/build/arm64-v8a -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -DZLIB_BUILD_STATIC=OFF
             cmake --build zlib/build/arm64-v8a  --config Release
   
     - name: Build for x86_64
@@ -67,7 +67,7 @@ jobs:
                   -DCMAKE_ANDROID_ARCH_ABI=x86_64 \
                   -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
                   -S zlib \
-                  -B zlib/build/x86_64 -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF
+                  -B zlib/build/x86_64 -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -DZLIB_BUILD_STATIC=OFF
             cmake --build zlib/build/x86_64 --config Release
   
 

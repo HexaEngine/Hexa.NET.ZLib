@@ -52,25 +52,25 @@ jobs:
         if: matrix.os == 'linux' || matrix.os == 'ubuntu-latest'
         run: |
           cd zlib
-          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -DZLIB_BUILD_STATIC=OFF
 
       - name: Configure zlib with CMake on Windows
         if: matrix.os == 'windows-latest' && matrix.arch != 'arm64'
         run: |
           cd zlib
-          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -A ${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -A ${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -DZLIB_BUILD_STATIC=OFF
 
       - name: Configure zlib with CMake on Windows (ARM64)
         if: matrix.os == 'windows-latest' && matrix.arch == 'arm64'
         run: |
           cd zlib
-          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -A ${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -A ${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -DZLIB_BUILD_STATIC=OFF -DCMAKE_SYSTEM_VERSION=10.0.26100.0
 
       - name: Configure zlib with CMake on macOS
         if: matrix.os == 'macos-latest'
         run: |
           cd zlib
-          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -ZLIB_BUILD_STATIC=OFF
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }} -DZLIB_BUILD_TESTING=OFF -DZLIB_BUILD_SHARED=ON -DZLIB_BUILD_STATIC=OFF
 
       - name: Build zlib
         run: cmake --build zlib/build --config Release
