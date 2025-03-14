@@ -1,0 +1,49 @@
+{
+  "Namespace": "Hexa.NET.ZLib",
+  "ApiName": "ZLib",
+  "LibName": "ZLib",
+  "Usings": [ "System.Numerics" ],
+  "ImportType": "FunctionTable",
+  "EnableExperimentalOptions": true,
+  "GenerateConstructorsForStructs": true,
+  "GenerateSizeOfStructs": false,
+  "GenerateDelegates": true,
+  "GenerateMetadata": false,
+  "GenerateExtensions": true,
+  "DelegatesAsVoidPointer": true,
+  "BoolType": 0,
+  "IgnoredConstants": [ "PNG_HEADER_VERSION_STRING" ],
+  "IgnoredFunctions": [ "gzvprintf" ],
+  "IgnoredTypedefs": [
+    "gz_headerp",
+    "gzFilep",
+
+    "voidp",
+    "voidpc",
+    "voidpf",
+
+    "z_streamp"
+  ],
+  "TypeMappings": {
+    "va_list": "nuint",
+    "time_t": "long",
+    "FILE": "FILE",
+    "png_FILE_p": "FILE*",
+
+    "gz_header_s": "GZHeader",
+    "gz_headerp": "GZHeader*",
+    "gzFile_s": "GZFile",
+    "gzFilep": "GZFile*",
+
+    "voidp": "void*",
+    "voidpc": "void*",
+    "voidpf": "void*",
+
+    "z_stream_s": "ZStream",
+    "z_streamp": "ZStream*",
+    "z_size_t": "nint",
+    "uLongf": "uint",
+
+    "Bytef": "byte"
+  }
+}
