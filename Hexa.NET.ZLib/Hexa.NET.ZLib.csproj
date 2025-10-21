@@ -24,6 +24,7 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.png</PackageIcon>
 
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<NoWarn>$(NoWarn);1591</NoWarn>
@@ -95,6 +96,7 @@
 	<ItemGroup>
 		<Content Include="../LICENSE.txt" Pack="true" PackagePath="\" />
 		<Content Include="../README.md" Pack="true" PackagePath="\" />
+		<Content Include="../icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 </Project>
